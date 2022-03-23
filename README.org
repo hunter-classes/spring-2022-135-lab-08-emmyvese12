@@ -1,10 +1,10 @@
 * Spring 2022 - Lab 08
 
-* Last name:
+* Last name: Veselinov
 
-* First name:
+* First name: Emmy
 
-* GitHub username:
+* GitHub username: emmyvese12
 
 * Notes:
 
