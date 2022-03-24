@@ -17,9 +17,13 @@ int main(){
     std::string taskB_outfile = "taskB.pgm";
     invertColors2(imageFile, taskB_outfile);
 
-    //task D add a white box
+    //task C add a white box
     std::string taskC_outfile = "taskC.pgm";
     whiteBox(imageFile, taskC_outfile);
+
+    //task D add a white frame
+    std::string taskD_outfile = "taskD.pgm";
+    addFrame(imageFile, taskD_outfile);
 
     return 0;
 }
