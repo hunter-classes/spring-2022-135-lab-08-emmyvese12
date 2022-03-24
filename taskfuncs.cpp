@@ -12,6 +12,7 @@ void invertColors(std::string imagefile, std::string outfile){
     // takes in a array called image, height, and width which are all empty and will be filled in with the image data
     int image[MAX_H][MAX_W];
     int height, width;
+
     readImage(imagefile, image, height, width); // reads the provided image and reports back the dimensions
 
     int out[MAX_H][MAX_W]; // modify the contents in a new array 
@@ -58,3 +59,38 @@ void invertColors2(std::string imagefile, std::string outfile){
     writeImage(outfile, out, height, width);
 }
 
+
+// task C
+// add a white box exactly in the middle of the picture 
+
+void whiteBox(std::string imagefile, std::string outfile){
+
+    int image[MAX_H][MAX_W];
+    int height, width;
+
+    readImage(imagefile, image, height, width);
+
+    int out[MAX_H][MAX_W];
+    int colMark1 = width/4; // quarter of the width (left side of the box)
+    int colMark2 = 3 * colMark1; // 3/4 of the width (right side of the box)
+
+    int rowMark1 = height/4; // quarter of the height (top of the box)
+    int rowMark2 = 3 * rowMark1; // 3/4 of the height (bottom of the box)
+
+    for (int row = 0; row < height; row++){
+        for (int col = 0; col < width; col++){
+
+            // greater than or equal to mark 1 and below mark 2 which is going from 1/4 to 3/4 == 1/2
+            if ( (col >= colMark1 && col < colMark2) && (row >= rowMark1 && row < rowMark2) ){
+                int diff = 255 - image[row][col]; // to be white, the pixel brightness needs to be 255, so we calculate the difference then add that back
+                out[row][col] = diff + (image[row][col]);
+            }
+            else {
+                out[row][col] = image[row][col];
+            }
+        }
+    }
+
+    writeImage(outfile, out, height, width);
+
+}
