@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <fstream>
 #include "imageio.h"
-#include "invertcolors.h"
+#include "taskfuncs.h"
 
 int main(){
 
