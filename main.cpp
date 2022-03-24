@@ -13,6 +13,9 @@ int main(){
     std::string taskA_outfile = "taskA.pgm";
     invertColors(imageFile, taskA_outfile); // on mac--> open taskA.pgm OR qlmanage -p taskA.pgm
 
+    //task B invert right half only
+    std::string taskB_outfile = "taskB.pgm";
+    invertColors2(imageFile, taskB_outfile);
 
     return 0;
 }
