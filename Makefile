@@ -1,11 +1,11 @@
-main: main.o imageio.o invertcolors.o
-	g++ -o main main.o imageio.o invertcolors.o
+main: main.o imageio.o taskfuncs.o
+	g++ -o main main.o imageio.o taskfuncs.o
 
-main.o: main.cpp imageio.h invertcolors.h
+main.o: main.cpp imageio.h taskfuncs.h
 	g++ -c main.cpp
 
-invertcolors.o: invertcolors.cpp invertcolors.h
-	g++ -c invertcolors.cpp
+taskfuncs.o: taskfuncs.cpp taskfuncs.h
+	g++ -c taskfuncs.cpp
 
 sample: sample.o imageio.o
 	g++ -o sample sample.o imageio.o
@@ -15,4 +15,4 @@ sample.o: sample.cpp imageio.h
 imageio.o: imageio.cpp imageio.h
 
 clean:
-	rm -f sample.o imageio.o main.o invertcolors.o
+	rm -f sample.o imageio.o main.o taskfuncs.o
