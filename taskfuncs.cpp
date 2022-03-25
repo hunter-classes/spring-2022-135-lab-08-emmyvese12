@@ -36,7 +36,7 @@ void invertColors(std::string imagefile, std::string outfile){
 
 void invertColors2(std::string imagefile, std::string outfile){
 
-    int image[MAX_H][MAX_W];
+    int image[MAX_H][MAX_W];//2d array
     int height, width;
 
     readImage(imagefile, image, height, width);
@@ -81,7 +81,7 @@ void whiteBox(std::string imagefile, std::string outfile){
         for (int col = 0; col < width; col++){
 
             // greater than or equal to mark 1 and below mark 2 which is going from 1/4 to 3/4 == 1/2
-            if ( (col >= colMark1 && col < colMark2) && (row >= rowMark1 && row < rowMark2) ){
+            if ( (col >= colMark1 && col <= colMark2) && (row >= rowMark1 && row <= rowMark2) ){
                 int diff = 255 - image[row][col]; // to be white, the pixel brightness needs to be 255, so we calculate the difference then add that back
                 out[row][col] = diff + (image[row][col]);
             }
@@ -121,11 +121,11 @@ void addFrame(std::string imagefile, std::string outfile){
             // (same applies for right line and bottom line)
 
             // the column must be in between the column range and must belong on either marked row
-            if ( (col >= colMark1 && col < colMark2) && (row == rowMark1 || row == rowMark2) ){
+            if ( (col >= colMark1 && col <= colMark2) && (row == rowMark1 || row == rowMark2) ){
                 int diff = 255 - image[row][col];
                 out[row][col] = diff + image[row][col];
             }
-            else if ( (row >= rowMark1 && row < rowMark2) && (col == colMark1 || col == colMark2) ){
+            else if ( (row >= rowMark1 && row <= rowMark2) && (col == colMark1 || col == colMark2) ){
                 int diff = 255 - image[row][col];
                 out[row][col] = diff + image[row][col];
             }
@@ -138,3 +138,72 @@ void addFrame(std::string imagefile, std::string outfile){
     writeImage(outfile, out, height, width);
 
 }
+
+//task E
+//scale the original image by 200% (each pixel is 2x2)
+// use 4 for loops --> for row, for 2(increase by the factor of 2 to add it twice), for col, for 2
+
+void scaleBy200(std::string imagefile, std::string outfile){
+
+    int image[MAX_H][MAX_W];
+    int height, width;
+
+    readImage(imagefile, image, height, width);
+
+    int out[MAX_H][MAX_W];
+    //increase the size of the image by a factor of 2:
+    int newHeight = (height * 2);
+    int newWidth = (width * 2);
+
+    for (int row = 0; row < newHeight; row++){
+        
+        for (int col = 0; col < newWidth; col++){
+            int r = row/2;
+            int c = col/2;
+
+            // to get a 2x2: --> 11 --> 11 11 
+            //                          11 11
+            // top left--> copy the pixel normally into the array out
+            // top right --> increase the width by 1
+            // bottom left --> increase the height by 1
+            // bottom right --> increase the width and height both by 1
+            out[row][col] = image[r][c]; // image[row][col] doesn't fill the entire space and when opened, we can see black unused space 
+            out[row][col+1] = image[r][c];
+            out[row+1][col] = image[r][c];
+            out[row+1][col+1] = image[r][c];
+
+        }
+        
+    }
+
+    writeImage(outfile, out, newHeight, newWidth);
+}
+
+//task F
+//pixelate the imagefile
+
+void pixelate(std::string imagefile, std::string outfile){
+
+    int image[MAX_H][MAX_W];
+    int height, width;
+
+    readImage(imagefile, image, height, width);
+
+    int out[MAX_H][MAX_W];
+
+    for (int row = 0; row < height; row+=2){ //going by 2's because 2x2 takes into account both rows/both columns
+        for (int col = 0; col < width; col+=2){
+            //take the average in a 2x2 window (assuming height and width are even)
+            int average = (image[row][col] + image[row][col + 1] + image[row+1][col] + image[row+1][col+1])/4;
+            //assign that average to each of the pixels in the 2x2 window
+            out[row][col] = average;
+            out[row][col+1] = average;
+            out[row+1][col] = average;
+            out[row+1][col+1] = average;
+        }
+    }
+
+    writeImage(outfile, out, height, width);
+}
+
+
