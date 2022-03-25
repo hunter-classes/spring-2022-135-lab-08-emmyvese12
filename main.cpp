@@ -19,7 +19,7 @@ int main(){
     //task A invert colors
     std::string imageFile = "catimage.pgm"; // catimage.png
     std::string taskA_outfile = "taskA.pgm";
-    invertColors(imageFile, taskA_outfile); // on mac--> open taskA.pgm OR qlmanage -p taskA.pgm
+    invertColors(imageFile, taskA_outfile); // on mac--> open taskA.pgm OR qlmanage -p taskA.pgm // on linux --> eog catimage.pgm or eog taskA.pgm
 
     //task B invert right half only
     std::string taskB_outfile = "taskB.pgm";
