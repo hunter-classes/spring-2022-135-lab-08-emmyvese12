@@ -6,7 +6,7 @@
 
 * GitHub username: emmyvese12
 
-* Notes:
+* Notes: Added in catimage.pgm and catimage.png (from the lab instructions)
 
 
   
