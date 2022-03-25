@@ -27,7 +27,6 @@ void invertColors(std::string imagefile, std::string outfile){
         }
     }
 
-
     writeImage(outfile, out, height, width);
 }
 
