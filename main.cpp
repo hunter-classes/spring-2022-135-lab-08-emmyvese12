@@ -3,7 +3,8 @@ Emmy Veselinov
 CSCI 135 Lab-08
 Image Processing
 */
-//task A-F 
+
+//tasks A-F 
 
 #include <iostream>
 #include <string>
